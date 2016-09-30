@@ -28,10 +28,5 @@ g <- ggplot() + coord_fixed(1) +
     axis.title.x=element_blank(),
     axis.title.y=element_blank()  
   ) +
+  lapply(h, function(p) geom_polygon(data=p, aes(x=hx, y=hy, alpha=0, fill=value %% 2), color="black")) +
   annotate("text", x=center.x, y=center.y, label=value)
-
-g2 <- g + lapply(h, function(p) geom_polygon(data=p, aes(x=hx, y=hy, alpha=0.1, fill=value %% 2), color="black"))
-  
-# g + lapply(h, function(p) geom_path(data=p, aes(x=x, y=y, alpha=0.25), color="black"))
-# h <- lapply(h, function(df) df$color <- value %% 3, df)
-# colors <- lapply(h, function(df) df$color)
