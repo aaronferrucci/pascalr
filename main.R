@@ -1,12 +1,20 @@
 library(ggplot2)
 source("utils.R")
 h <- list()
-for (n in 0:9) {
+center.x <- as.integer()
+center.y <- as.integer()
+value <- as.integer()
+i <- 1
+for (n in 0:12) {
   for (k in 0:n) {
+    center.x[i] <- k - 0.5*n
+    center.y[i] <- -n * sin(pi/3)
+    # value[i] = choose(n, k)
     x <- k - 0.5*n
     y <- -n * sin(pi/3)
-    value = choose(n, k)
-    h[[length(h) + 1]] <- cbind(hexagon(c(x, y)), data.frame(n=n, k=k, value=value, color=value %% 2))
+    value[i] = choose(n, k)
+    h[[i]] <- cbind(hexagon(c(center.x[i], center.y[i])), data.frame(n=n, k=k, value=value[i]))
+    i <- i + 1
   }
 }
 g <- ggplot() + coord_fixed(1) +
@@ -20,7 +28,10 @@ g <- ggplot() + coord_fixed(1) +
     axis.title.x=element_blank(),
     axis.title.y=element_blank()  
   ) +
-  lapply(h, function(p) geom_polygon(data=p, aes(x=x, y=y, alpha=0.25, fill=color), color="black"))
+  annotate("text", x=center.x, y=center.y, label=value)
+
+g2 <- g + lapply(h, function(p) geom_polygon(data=p, aes(x=hx, y=hy, alpha=0.1, fill=value %% 2), color="black"))
+  
 # g + lapply(h, function(p) geom_path(data=p, aes(x=x, y=y, alpha=0.25), color="black"))
 # h <- lapply(h, function(df) df$color <- value %% 3, df)
 # colors <- lapply(h, function(df) df$color)

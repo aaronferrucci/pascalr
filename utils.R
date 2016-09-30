@@ -12,9 +12,9 @@ polar_point2 <- function(r, theta) {
 }
 
 base_hexagon <- function(center, r) {
-  x <- r * cos(0:5 * pi / 3 + pi/6) + center[1]
-  y <- r * sin(0:5 * pi / 3 + pi/6) + center[2]
-  return(data.frame(x=x, y=y))
+  hx <- r * cos(0:5 * pi / 3 + pi/6) + center[1]
+  hy <- r * sin(0:5 * pi / 3 + pi/6) + center[2]
+  return(data.frame(hx=hx, hy=hy))
 }
 
 hexagon <- function(center) {
