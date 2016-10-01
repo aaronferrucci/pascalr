@@ -44,7 +44,13 @@ ui <- shinyUI(fluidPage(
       ),
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+        fluidRow(
+          column(12, plotOutput("plot"))
+        ),
+        fluidRow(
+          br(),
+          tableOutput("references")
+        )
       )
    )
 ))
@@ -56,7 +62,7 @@ server <- shinyServer(function(input, output) {
      paste0('<br/>', desc_table[[input$colorfn]]),
      sep = '<br/>'
    ))})
-   output$distPlot <- renderPlot({
+   output$plot <- renderPlot({
      # choose a function
      fn <- function_table[[input$colorfn]]
      
@@ -65,6 +71,23 @@ server <- shinyServer(function(input, output) {
      p <- plot(h, input$show_values)
      print(p)
    })
+   output$references <- renderTable({
+     labels <- c(
+       "All about Pascal's Triangle",
+       "Source Code"
+     )
+     urls <- c(
+       "https://en.wikipedia.org/wiki/Pascal%27s_triangle",
+       "https://github.com/aaronferrucci/pascalr"
+     )
+     references <- paste0(
+       labels, ": ",
+       "<a href='",  urls, "' target='_blank'>",
+       urls, "</a>")
+     
+     data.frame(references)
+     
+   }, sanitize.text.function = function(x) x)
 })
 
 # Run the application 
