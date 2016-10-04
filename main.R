@@ -6,7 +6,7 @@ value_format <- function(v) {
 
 # avoid "evaluation nested too deeply":
 options(expressions=10000)
-max_row = 29
+max_row = 30
 h <- list()
 center.x <- as.integer()
 center.y <- as.integer()
