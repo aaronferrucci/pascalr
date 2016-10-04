@@ -2,12 +2,6 @@ library(shiny)
 library(numbers)
 source("main.R")
 
-# Fill functions. All must return integer.
-mod2 <- function(v, n) ifelse(v %% 2 == 0, 1, 0)
-mod3 <- function(v, n) ifelse(v %% 3 == 0, 1, 0)
-modn <- function(v, n) {ifelse(n == 0, 0, ifelse(v %% n == 0, 1, 0))}
-prime <- function(v, n) ifelse(n == 0, 0, ifelse(isPrime(n) && modn(v, n), 1, 0))
-value <- function(v, n) v
 color_table <- c(
   "value mod 2 == 0" = "mod2",
   "value mod 3 == 0" = "mod3",

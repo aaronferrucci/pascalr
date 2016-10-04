@@ -20,3 +20,10 @@ base_hexagon <- function(center, r) {
 hexagon <- function(center) {
   return(base_hexagon(center, 0.5/sin(pi/3)))
 }
+
+# Fill functions. All must return integer.
+mod2 <- function(v, n) ifelse(v %% 2 == 0, 1, 0)
+mod3 <- function(v, n) ifelse(v %% 3 == 0, 1, 0)
+modn <- function(v, n) {ifelse(n == 0, 0, ifelse(v %% n == 0, 1, 0))}
+prime <- function(v, n) ifelse(n == 0, 0, ifelse(isPrime(n) && modn(v, n), 1, 0))
+value <- function(v, n) v
