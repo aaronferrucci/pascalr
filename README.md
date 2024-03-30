@@ -9,5 +9,8 @@ For prime-numbered rows, the color is a bit darker to highlight the pattern.
 
 To build the image, load the R project and do 'source("primes.R")'
 
-Interactive app: https://aaronferrucci.shinyapps.io/pascalr/
+~~Interactive app: https://aaronferrucci.shinyapps.io/pascalr/~~
+Oops, link above went stale. But in any case, the app runs very slowly,
+probably never provided much entertainment value.
+
 
